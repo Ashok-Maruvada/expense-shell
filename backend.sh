@@ -60,7 +60,7 @@ validate $? "unzipping backend code to app dir"
 npm install
 validate $? "installing nodejs dependencies"
 
-cp <backend.service-path> /etc/systemd/system/backend.service
+cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service
 validate $? "copied backend service"
 
 systemctl daemon-reload &>>$LOGFILE
@@ -75,7 +75,7 @@ validate $? "enabling backend"
 dnf install mysql -y &>>$LOGFILE
 validate $? "installing mysql client"
 
-mysql -h <mysql-ip> -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
+mysql -h 172.31.87.240 -uroot -p${mysql_root_password} < /app/schema/backend.sql &>>$LOGFILE
 validate $? "loading schema"
 
 systemctl restart backend &>>$LOGFILE

@@ -45,7 +45,7 @@ cd /usr/share/nginx/html &>>$LOGFILE
 unzip /tmp/frontend.zip &>>$LOGFILE
 validate $? "unzipping the code "
 
-cp <expense.conf-path> /etc/nginx/default.d/expense.conf &>>$LOGFILE
+cp /home/ec2-user/expense-shell/expense.conf /etc/nginx/default.d/expense.conf &>>$LOGFILE
 validate $? "coping expense code"
 
 systemctl restart nginx &>>$LOGFILE
