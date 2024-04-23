@@ -9,7 +9,7 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 echo " please enter DB password"
-read -s mysql-root-password
+read -s mysql_root_password
 validate(){
     if [ $1 -ne 0 ]
     then 
@@ -40,10 +40,10 @@ validate $? "starting mysql"
 # VALIDATE $? "Setting up root password"
 # below code is to make script idempotent 
 
-mysql -h 172.31.87.1 -uroot -p${mysql-root-password} -e 'show databases;' &>>$LOGFILE
+mysql -h 172.31.87.1 -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE
 if [ $? -ne 0 ]
 then
-    mysql_secure_installation --set-root-pass ${mysql-root-password} &>>$LOGFILE
+    mysql_secure_installation --set-root-pass ${mysql_root_password} &>>$LOGFILE
     validate $? " setting root password "
 else
     echo -e " root password is already set up : $G skipping $N "
