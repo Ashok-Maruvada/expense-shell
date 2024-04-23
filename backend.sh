@@ -43,7 +43,6 @@ then
     validate $? " creating user: expense"
 else 
     echo -e " user expense is already exist: $Y skipping $N "
-    exit 1
 fi
 
 mkdir -p /app
