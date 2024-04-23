@@ -37,13 +37,13 @@ dnf install nodejs -y &>>$LOGFILE
 validate $? "installing nodejs"
 
 id expense &>>$LOGFILE
-if [ $? -eq 0 ]
+if [ $? -nq 0 ]
 then
-    echo -e " user expense is already exist: $Y skipping $N "
-    exit 1
-else 
     useradd expense
     validate $? " creating user: expense"
+else 
+    echo -e " user expense is already exist: $Y skipping $N "
+    exit 1
 fi
 
 mkdir -p /app
